@@ -20,8 +20,7 @@ def build_retriver(pdf_path : str):
     loader = PyPDFLoader(pdf_path)
     document = loader.load()
 
-    splitter = RecursiveCharacterTextSplitter(chunk_size = 800, 
-                                              chunk_overlap = 100)
+    splitter = RecursiveCharacterTextSplitter(chunk_size = 800, chunk_overlap = 100)
     
     chunks = splitter.split_documents(document)
 
@@ -29,10 +28,10 @@ def build_retriver(pdf_path : str):
 
     return vectorstore.as_retriever(search_kwargs = {"k":4})
 
-acedemic_retriever = build_retriver("academics_handbook.pdf")
+academic_retriever = build_retriver("academics_handbook.pdf")
 fee_retriever = build_retriver("fee_structure.pdf")
 
-llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0.4)
+llm = ChatGroq(model="openai/gpt-oss-120b", temperature=0.4)
 
 #step2 - State 
 
@@ -77,7 +76,7 @@ def classifier_node(state : State) -> dict:
 def academic_rag_node(state: State) -> dict:
     """Retrieves relevant chunks from the academics handbook."""
     query = state["messages"][-1].content
-    docs = acedemic_retriever.invoke(query)
+    docs = academic_retriever.invoke(query)
     context = "\n\n".join([doc.page_content for doc in docs])
     return {"retrieved_context": context}
 
@@ -145,9 +144,7 @@ graph.add_node("response",response_node)
 
 graph.add_edge(START,"classifier")
 
-graph.add_conditional_edges(
-    "classifier",route_query
-)
+graph.add_conditional_edges("classifier",route_query)
 
 graph.add_edge("academic_rag","response")
 graph.add_edge("fee_rag","response")

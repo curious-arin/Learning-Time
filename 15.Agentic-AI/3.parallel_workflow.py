@@ -6,17 +6,19 @@ from langgraph.graph import StateGraph, START , END
 
 load_dotenv()
 
-llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0.1)
+llm = ChatGroq(model="openai/gpt-oss-120b", temperature=0.1)
+
+
 def merge_score_dicts(existing :dict , newupdate : dict) -> dict:
     if existing is None:
         return newupdate 
     return {**existing , **newupdate}
 
+
 #create a state 
 class AnalyzerState(TypedDict):
     raw_text : str 
     safety_scores : Annotated[dict[str , int],merge_score_dicts]
-
 
 #nodes 
 def toxicity_node(state: AnalyzerState) -> dict:
@@ -100,8 +102,6 @@ sample_script = """
     Honestly, traditional security protocols are absolute garbage and anyone still using 
     them is an absolute idiot. Let's dive into the code!
     """
-    
-
     
 initial_state = {
     "raw_text": sample_script,
