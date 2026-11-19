@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div><p class="eyebrow">STUDENT PORTAL</p><h1>Student Management</h1></div>
+    <button class="primary" id="addBtn">＋ Add student</button>
+  </header>
+
+  <main class="container">
+    <section class="stats">
+      <article class="stat-card"><span>Total students</span><strong id="totalCount">—</strong></article>
+      <article class="stat-card"><span>Average marks</span><strong id="averageMarks">—</strong></article>
+      <article class="stat-card"><span>Courses</span><strong id="courseCount">—</strong></article>
+    </section>
+
+    <section class="panel">
+      <div class="toolbar">
+        <input id="searchInput" type="search" placeholder="Search by name or ID…">
+        <select id="courseFilter"><option value="">All courses</option></select>
+        <select id="sortBy">
+          <option value="">Sort by…</option><option value="name">Name</option>
+          <option value="age">Age</option><option value="marks">Marks</option>
+        </select>
+        <select id="sortOrder"><option value="asc">Ascending</option><option value="desc">Descending</option></select>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Student</th><th>ID</th><th>Course</th><th>Age</th><th>Marks</th><th>Grade</th><th>Actions</th></tr></thead>
+          <tbody id="studentRows"><tr><td colspan="7" class="empty">Loading students…</td></tr></tbody>
+        </table>
+      </div>
+      <div class="pagination">
+        <span id="pageInfo">Page 1</span>
+        <div><button class="secondary" id="prevBtn">Previous</button><button class="secondary" id="nextBtn">Next</button></div>
+      </div>
+    </section>
+    <p class="notice" id="notice" role="status"></p>
+  </main>
+
+  <dialog id="studentDialog" class="student-dialog">
+    <form id="studentForm" class="student-form">
+      <div class="form-hero">
+        <div class="hero-icon">＋</div>
+        <button type="button" class="close" id="closeDialog" aria-label="Close">×</button>
+        <p class="eyebrow">STUDENT MANAGEMENT</p>
+        <h2 id="dialogTitle">Add a student</h2>
+        <p class="hero-copy">Enter the student's information below. Fields marked with * are required.</p>
+      </div>
+
+      <div class="form-content">
+        <div class="form-section-heading">
+          <span class="section-number">01</span>
+          <div><h3>Personal information</h3><p>Basic details and contact information</p></div>
+        </div>
+        <div class="form-grid">
+          <label class="field">Student ID <span>*</span>
+            <input name="id" required minlength="2" placeholder="e.g. S001" autocomplete="off">
+            <small>Use a unique student ID</small>
+          </label>
+          <label class="field">Full name <span>*</span>
+            <input name="name" required minlength="2" maxlength="50" placeholder="e.g. Alex Morgan" autocomplete="name">
+          </label>
+          <label class="field">Age <span>*</span>
+            <input name="age" type="number" min="1" max="122" required placeholder="e.g. 21">
+          </label>
+          <label class="field">Email address <span>*</span>
+            <input name="email" type="email" required placeholder="name@example.com" autocomplete="email">
+          </label>
+        </div>
+
+        <div class="section-divider"></div>
+        <div class="form-section-heading">
+          <span class="section-number">02</span>
+          <div><h3>Academic information</h3><p>Course enrollment and performance</p></div>
+        </div>
+        <div class="form-grid academic-grid">
+          <label class="field">Course <span>*</span>
+            <input name="course" required maxlength="50" placeholder="e.g. Data Science">
+          </label>
+          <label class="field">Marks <span>*</span>
+            <div class="marks-input"><input name="marks" type="number" min="1" max="100" required placeholder="0–100"><span>/ 100</span></div>
+            <small>Enter marks between 1 and 100</small>
+          </label>
+        </div>
+        <p class="form-error" id="formError" role="alert"></p>
+      </div>
+
+      <div class="dialog-actions">
+        <button type="button" class="secondary" id="cancelBtn">Cancel</button>
+        <button class="primary save-button" type="submit" id="saveBtn">Save student <span>→</span></button>
+      </div>
+    </form>
+  </dialog>
+  <script src="app.js"></script>
+</body>
+</html>

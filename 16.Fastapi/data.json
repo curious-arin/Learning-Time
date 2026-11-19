@@ -1,0 +1,58 @@
+{
+    "S002": {
+        "name": "Rishita Bhatt",
+        "age": 23,
+        "email": "rishitabhatt@gmail.com",
+        "course": "AI Research Scientist",
+        "marks": 100
+    },
+    "S003": {
+        "name": "Advik Verma",
+        "age": 21,
+        "email": "advikverma@gmail.com",
+        "course": "Cyber Security",
+        "marks": 85
+    },
+    "S004": {
+        "name": "Radhika Singh",
+        "age": 21,
+        "email": "radhikasingh@gmail.com",
+        "course": "Machine Learning",
+        "marks": 94
+    },
+    "S005": {
+        "name": "Vikas Singh",
+        "age": 22,
+        "email": "vikassingh@gmail.com",
+        "course": "Cloud Computing",
+        "marks": 79
+    },
+    "S006": {
+        "name": "Vaishnavi Singh",
+        "age": 21,
+        "email": "vaishnavisingh@gmail.com",
+        "course": "Artificial Intelligence",
+        "marks": 90
+    },
+    "S008": {
+        "name": "Vishal Verma",
+        "age": 22,
+        "email": "vishalverma@gmail.com",
+        "course": "Army",
+        "marks": 92
+    },
+    "S001": {
+        "name": "Arin Sharma",
+        "age": 23,
+        "email": "arinsharma.research@gmail.com",
+        "course": "AI Engineering",
+        "marks": 94
+    },
+    "S009": {
+        "name": "Aditya Singh",
+        "age": 22,
+        "email": "adityasingh@gmail.com",
+        "course": "Mechanical Engineering",
+        "marks": 89
+    }
+}
